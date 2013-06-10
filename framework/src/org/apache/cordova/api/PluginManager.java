@@ -94,10 +94,12 @@ public class PluginManager {
      * Load plugins from res/xml/plugins.xml
      */
     public void loadPlugins() {
-        int id = this.ctx.getActivity().getResources().getIdentifier("config", "xml", this.ctx.getActivity().getPackageName());
+        LOG.d(TAG, "Package name: " + this.ctx.getActivity().getClass().getPackage().getName());
+        int id = this.ctx.getActivity().getResources().getIdentifier("config", "xml", this.ctx.getActivity().getClass().getPackage().getName());
+        //int id = this.ctx.getActivity().getResources().getIdentifier("config", "xml", this.ctx.getActivity().getPackageName());
         if(id == 0)
         {
-            id = this.ctx.getActivity().getResources().getIdentifier("plugins", "xml", this.ctx.getActivity().getPackageName());
+            id = this.ctx.getActivity().getResources().getIdentifier("plugins", "xml", this.ctx.getActivity().getClass().getPackage().getName());
             LOG.i(TAG, "Using plugins.xml instead of config.xml.  plugins.xml will eventually be deprecated");
         }
         if (id == 0) {
